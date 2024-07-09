@@ -1,0 +1,2 @@
+SussyRaider 3.0 rewriteのrewriteの検討を加速。
+異次元の検討の加速を実現するための会議を検討しています
