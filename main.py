@@ -161,33 +161,33 @@ class gui_class():
                    activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 1))
             self.button_1.place(x=20, y=60)
 
-            self.button_2 = tk.Button(frame, image=button_image_nick_avator, relief="flat", bg=self.theme2,
-                   activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 2 ))
-            self.button_2.place(x=20, y=120)
-
-            self.button_3 = tk.Button(frame, image=button_image_friend_dm, relief="flat", bg=self.theme2,
-                   activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 3))
-            self.button_3.place(x=20, y=180)
-
-            self.button_4 = tk.Button(frame, image=button_image_spammer, relief="flat", bg=self.theme2,
-                   activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 4))
-            self.button_4.place(x=20, y=240)
-
-            self.button_5 = tk.Button(frame, image=button_image_vcspammer, relief="flat", bg=self.theme2,
-                   activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 5))
-            self.button_5.place(x=20, y=300)
-
-            self.button_6 = tk.Button(frame, image=button_image_reaction, relief="flat", bg=self.theme2,
-                   activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 6))
-            self.button_6.place(x=20, y=360)
-
-            self.button_7 = tk.Button(frame, image=button_image_btnpusher, relief="flat", bg=self.theme2,
-                   activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 7))
-            self.button_7.place(x=20, y=420)
-
-            self.button_8 = tk.Button(frame, image=button_image_report, relief="flat", bg=self.theme2,
-                   activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 8))
-            self.button_8.place(x=20, y=480)
+            #self.button_2 = tk.Button(frame, image=button_image_nick_avator, relief="flat", bg=self.theme2,
+            #       activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 2 ))
+            #self.button_2.place(x=20, y=120)
+#
+            #self.button_3 = tk.Button(frame, image=button_image_friend_dm, relief="flat", bg=self.theme2,
+            #       activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 3))
+            #self.button_3.place(x=20, y=180)
+#
+            #self.button_4 = tk.Button(frame, image=button_image_spammer, relief="flat", bg=self.theme2,
+            #       activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 4))
+            #self.button_4.place(x=20, y=240)
+#
+            #self.button_5 = tk.Button(frame, image=button_image_vcspammer, relief="flat", bg=self.theme2,
+            #       activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 5))
+            #self.button_5.place(x=20, y=300)
+#
+            #self.button_6 = tk.Button(frame, image=button_image_reaction, relief="flat", bg=self.theme2,
+            #       activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 6))
+            #self.button_6.place(x=20, y=360)
+#
+            #self.button_7 = tk.Button(frame, image=button_image_btnpusher, relief="flat", bg=self.theme2,
+            #       activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 7))
+            #self.button_7.place(x=20, y=420)
+#
+            #self.button_8 = tk.Button(frame, image=button_image_report, relief="flat", bg=self.theme2,
+            #       activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 8))
+            #self.button_8.place(x=20, y=480)
 
             tk.Button(frame, image=button_image_white_l, relief="flat", bg=self.theme2,
                    activebackground=self.theme2, borderwidth=0).place(x=50, y=550)
@@ -199,9 +199,9 @@ class gui_class():
             tk.Label(frame, text="ModuleList",
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 24, "")).place(x=50, y=7)
 
-            self.button_9 = tk.Button(frame, image=button_image_join_leave, relief="flat", bg=self.theme2,
-                   activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 9))
-            self.button_9.place(x=20, y=60)
+            #self.button_9 = tk.Button(frame, image=button_image_join_leave, relief="flat", bg=self.theme2,
+            #       activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulesetting(1, 9))
+            #self.button_9.place(x=20, y=60)
 
             tk.Button(frame, image=button_image_blue_l, relief="flat", bg=self.theme2,
                    activebackground=self.theme2, borderwidth=0, command=lambda: self.setup_modulelist(1, 0)).place(x=50, y=550)
@@ -313,8 +313,55 @@ class gui_class():
         self.setup_modulelist(4, num2)
         self.old_button = num2
         if num2 == 1:
-            tk.Label(frame, text="Coming soon :L",
+        #    tk.Label(frame, text="Coming soon :L",
+        #        bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=65)
+            #EntryBox
+            Label(frame, text="InviteLink",
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=65)
+            Label(frame, image=entry_image_1,
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=25, y=105)
+            #self.invitelinkentry = tk.Entry(frame, font=(self.font, 15, ""), bg=self.entrytheme, fg=self.stringtheme, relief="flat" , insertbackground="white", width=25)
+            self.invitelinkentry = ctk.CTkEntry(frame, font=(self.font, 15, "normal"), bg_color=self.entrytheme, fg_color=self.entrytheme, width=250, height=15, border_color=self.entrytheme, text_color="white")
+            self.invitelinkentry.place(x=38, y=111)
+            Label(frame, text="ServerID",
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=155)
+            Label(frame, image=entry_image_1,
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=25, y=195)
+            #self.serveridentry = tk.Entry(frame, font=(self.font, 15, ""), bg=self.entrytheme, fg=self.stringtheme, relief="flat" , insertbackground="white", width=25)
+            #self.serveridentry.place(x=38, y=201)
+            self.serveridentry = ctk.CTkEntry(frame, font=(self.font, 15, "normal"), bg_color=self.entrytheme, fg_color=self.entrytheme, width=250, height=15, border_color=self.entrytheme, text_color="white")
+            self.serveridentry.place(x=36, y=201)
+
+            #Join/Leave button
+            Button(frame, image=button_image_join, relief="flat", bg=self.theme2,
+                activebackground=self.theme2, borderwidth=0, command=lambda: self.module(1)).place(x=35, y=265)
+            Button(frame, image=button_image_leave, relief="flat", bg=self.theme2,
+                activebackground=self.theme2, borderwidth=0, command=lambda: self.module(2)).place(x=180, y=265)
+            #CheckButton
+            Label(frame, text="MemberScreen",
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=380, y=65)
+            Checkbutton(frame, image=button_image_proxy_false, selectimage=button_image_proxy_true, fg=self.theme2, bg=self.theme2, activebackground=self.theme2, selectcolor=self.theme2, indicatoron=False, 
+                borderwidth=0, relief="flat", overrelief="flat", variable=self.memberscreensetting).place(x=340, y=68)
+            Label(frame, text="hCaptcha",
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=380, y=105)
+            Checkbutton(frame, image=button_image_proxy_false, selectimage=button_image_proxy_true, fg=self.theme2, bg=self.theme2, activebackground=self.theme2, selectcolor=self.theme2, indicatoron=False, 
+                borderwidth=0, relief="flat", overrelief="flat", variable=self.hcaptchasetting).place(x=340, y=108)
+            #result Label
+            Label(frame, text="Join",
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 25, "")).place(x=340, y=145)
+            Label(frame, textvariable=self.joinresult_success_label,
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=340, y=190)
+            Label(frame, textvariable=self.joinresult_failed_label,
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=340, y=225)
+            Label(frame, textvariable=self.joinresult_memberscreen_label,
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=340, y=260)
+        
+            Label(frame, text="Leave",
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 25, "")).place(x=610, y=145)
+            Label(frame, textvariable=self.leaveresult_success_label,
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=610, y=190)
+            Label(frame, textvariable=self.leaveresult_failed_label,
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=610, y=225)
         if num2 == 9:
             tk.Label(frame, text="Coming soon :L",
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=65)
@@ -561,10 +608,20 @@ class gui_class():
             if invitelink == "":
                 print("[-] InviteLink is not set")
                 return
+            if invitelink.__contains__('discord.gg/'):
+                invitelink = invitelink.replace('discord.gg/', '').replace('https://', '').replace('http://', '')
+            elif invitelink.__contains__('discord.com/invite/'):
+                invitelink = invitelink.replace('discord.com/invite/', '').replace('https://', '').replace('http://', '')
+            try:
+                invitelink = invitelink.split(".gg/")[1]
+            except:
+                pass
             if memberscreen == True:
                 if serverid == "":
                     print("[-] ServerID is not set")
                     return
+                else:
+                    print("[-] このオプションを使うと100%アカウントがあの世へ行きます。")
             if hcaptcha == True:
                 if apikey == "":
                     print("[-] Apikey is not set")
