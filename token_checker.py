@@ -5,7 +5,6 @@ import utilities.header as header
 import requests
 import string
 import random
-import main as main
 import threading
 import asyncio
 

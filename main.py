@@ -40,6 +40,7 @@ def get_hwid():
 class gui_class():
     def __init__(self, tk):
         global background_image
+        print("Welcome Sussyraider 3.0 Rewrite")
         self.theme = "#293350"
         self.theme2 = "#3A476A"
         self.linetheme = "#222e3f"
@@ -47,7 +48,7 @@ class gui_class():
         self.buttontheme = "#21262D"
         self.entrytheme = "#60677F"
         self.font = "Roboto"
-        self.title = "Sussyraider 3.0"
+        self.title = "Sussyraider 3.0 Rewrite"
         self.version = "3.0"
         self.status = "SUCCESS?"
         self.size = "1260x792"
