@@ -96,6 +96,8 @@ class gui_class():
         self.memberscreensetting.set("False")
         self.hcaptchasetting = BooleanVar()
         self.hcaptchasetting.set("False")
+        self.joinmessagesetting = BooleanVar()
+        self.joinmessagesetting.set("False")
 
         self.joinresult_success = 0
         self.joinresult_failed = 0
@@ -346,6 +348,10 @@ class gui_class():
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=380, y=105)
             Checkbutton(frame, image=button_image_proxy_false, selectimage=button_image_proxy_true, fg=self.theme2, bg=self.theme2, activebackground=self.theme2, selectcolor=self.theme2, indicatoron=False, 
                 borderwidth=0, relief="flat", overrelief="flat", variable=self.hcaptchasetting).place(x=340, y=108)
+            Label(frame, text="JoinMessage",
+                bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=640, y=65)
+            Checkbutton(frame, image=button_image_proxy_false, selectimage=button_image_proxy_true, fg=self.theme2, bg=self.theme2, activebackground=self.theme2, selectcolor=self.theme2, indicatoron=False, 
+                borderwidth=0, relief="flat", overrelief="flat", variable=self.joinmessagesetting).place(x=600, y=68)
             #result Label
             Label(frame, text="Join",
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 25, "")).place(x=340, y=145)
@@ -600,11 +606,12 @@ class gui_class():
         if proxies == []:
             print("[-] Proxies is not loaded")
             return
-        if module == 1: #Join
+        if module == 1: # Joiner
             serverid = self.serveridentry.get()
             invitelink = self.invitelinkentry.get()
             memberscreen = self.memberscreensetting.get()
             hcaptcha = self.hcaptchasetting.get()
+            joinmessage = self.joinmessagesetting.get()
             if invitelink == "":
                 print("[-] InviteLink is not set")
                 return
@@ -625,6 +632,10 @@ class gui_class():
             if hcaptcha == True:
                 if apikey == "":
                     print("[-] Apikey is not set")
+                    return
+            if joinmessage == True:
+                if serverid == "":
+                    print("[-] ServerID is not set")
                     return
             threading.Thread().start()
 

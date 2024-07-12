@@ -7,12 +7,12 @@ import os
 from colorama import Fore
 
 import utilities.header as header
-import modules.joiner.utilities.solver as solver
+import utilities.solver as solver
 
 pretty = Fore.LIGHTMAGENTA_EX + Fore.LIGHTCYAN_EX
 gray = Fore.LIGHTBLACK_EX + Fore.WHITE
 
-changenick = False
+changenick = False ## DO NOT CHANGE
 
 nickname = "みけねこ的うるはるしあ"
 

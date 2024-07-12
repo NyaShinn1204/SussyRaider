@@ -4,7 +4,7 @@ import httpx
 
 from colorama import Fore
 
-import modules.joiner.utilities.solver as get_balance
+import utilities.solver as get_balance
 
 def extract(format_token):
     if re.compile(r"(.+):").match(format_token):
