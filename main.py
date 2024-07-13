@@ -1,5 +1,6 @@
 import subprocess
 import json
+import requests
 import tkinter as tk
 import customtkinter as ctk
 from tkinter import *
@@ -12,6 +13,8 @@ import token_checker as token_checker
 import proxy_checker as proxy_checker
 import icon as icon
 import threading
+
+import modules.joiner.joiner as module_joiner
 
 pyglet.font.add_file(os.path.join(
     os.getcwd(), "design", "font", "Roboto-Regular.ttf"))
@@ -344,30 +347,45 @@ class gui_class():
         self.setup_modulelist(4, num2)
         self.old_button = num2
         if num2 == 1:
-        #    tk.Label(frame, text="Coming soon :L",
-        #        bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=65)
             #EntryBox
+            #Label(frame, text="InviteLink",
+            #    bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=45)  #  +90            #+40
+            #Label(frame, image=entry_image_1,
+            #    bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=25, y=85) #  +90
+            #self.invitelinkentry = ctk.CTkEntry(frame, font=(self.font, 15, "normal"), bg_color=self.entrytheme, fg_color=self.entrytheme, width=250, height=15, border_color=self.entrytheme, text_color="white")
+            #self.invitelinkentry.place(x=38, y=91)   #  +90             #+6
+            #
+            #Label(frame, text="ServerID",
+            #    bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=120)  
+            #Label(frame, image=entry_image_1,
+            #    bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=25, y=160)
+            #self.serveridentry = ctk.CTkEntry(frame, font=(self.font, 15, "normal"), bg_color=self.entrytheme, fg_color=self.entrytheme, width=250, height=15, border_color=self.entrytheme, text_color="white")
+            #self.serveridentry.place(x=36, y=166)
+            #
+            #Label(frame, text="JoinChannelID",
+            #    bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=200)
+            #Label(frame, image=entry_image_1,
+            #    bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=25, y=240)
+            #self.joinchannelid = ctk.CTkEntry(frame, font=(self.font, 15, "normal"), bg_color=self.entrytheme, fg_color=self.entrytheme, width=250, height=15, border_color=self.entrytheme, text_color="white")
+            #self.joinchannelid.place(x=36, y=246)
             Label(frame, text="InviteLink",
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=65)
             Label(frame, image=entry_image_1,
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=25, y=105)
-            #self.invitelinkentry = tk.Entry(frame, font=(self.font, 15, ""), bg=self.entrytheme, fg=self.stringtheme, relief="flat" , insertbackground="white", width=25)
             self.invitelinkentry = ctk.CTkEntry(frame, font=(self.font, 15, "normal"), bg_color=self.entrytheme, fg_color=self.entrytheme, width=250, height=15, border_color=self.entrytheme, text_color="white")
             self.invitelinkentry.place(x=38, y=111)
-            Label(frame, text="ServerID",
+            Label(frame, text="JoinChannelID",
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=30, y=155)
             Label(frame, image=entry_image_1,
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=25, y=195)
-            #self.serveridentry = tk.Entry(frame, font=(self.font, 15, ""), bg=self.entrytheme, fg=self.stringtheme, relief="flat" , insertbackground="white", width=25)
-            #self.serveridentry.place(x=38, y=201)
-            self.serveridentry = ctk.CTkEntry(frame, font=(self.font, 15, "normal"), bg_color=self.entrytheme, fg_color=self.entrytheme, width=250, height=15, border_color=self.entrytheme, text_color="white")
-            self.serveridentry.place(x=36, y=201)
+            self.joinchannelid = ctk.CTkEntry(frame, font=(self.font, 15, "normal"), bg_color=self.entrytheme, fg_color=self.entrytheme, width=250, height=15, border_color=self.entrytheme, text_color="white")
+            self.joinchannelid.place(x=36, y=201)
 
             #Join/Leave button
             Button(frame, image=button_image_join, relief="flat", bg=self.theme2,
-                activebackground=self.theme2, borderwidth=0, command=lambda: self.module(1)).place(x=35, y=265)
+                activebackground=self.theme2, borderwidth=0, command=lambda: self.module(1)).place(x=35, y=275)
             Button(frame, image=button_image_leave, relief="flat", bg=self.theme2,
-                activebackground=self.theme2, borderwidth=0, command=lambda: self.module(2)).place(x=180, y=265)
+                activebackground=self.theme2, borderwidth=0, command=lambda: self.module(2)).place(x=180, y=275)
             #CheckButton
             Label(frame, text="MemberScreen",
                 bg=self.theme2, fg=self.stringtheme, font=(self.font, 21, "")).place(x=380, y=65)
@@ -629,20 +647,23 @@ class gui_class():
         tokens = self.tokens
         proxies = self.proxies
         proxytype = self.proxytype
+        proxysetting = self.proxysetting
         apikey = self.apikey.get()
         delay = self.delay.get()
         if tokens == []:
             print("[-] Token is not loaded")
             return
-        if proxies == []:
-            print("[-] Proxies is not loaded")
-            return
+        if proxysetting == True:
+            if proxies == []:
+                print("[-] Proxies is not loaded")
+                return
         if module == 1: # Joiner
-            serverid = self.serveridentry.get()
+            #serverid = self.serveridentry.get()
             invitelink = self.invitelinkentry.get()
             memberscreen = self.memberscreensetting.get()
             hcaptcha = self.hcaptchasetting.get()
             joinmessage = self.joinmessagesetting.get()
+            joinchannelid = self.joinchannelid.get()
             if invitelink == "":
                 print("[-] InviteLink is not set")
                 return
@@ -654,6 +675,7 @@ class gui_class():
                 invitelink = invitelink.split(".gg/")[1]
             except:
                 pass
+            serverid = requests.get(f"https://discord.com/api/v9/invites/{invitelink}?with_counts=true&with_expiration=true").json()["guild"]["id"]
             if memberscreen == True:
                 if serverid == "":
                     print("[-] ServerID is not set")
@@ -668,7 +690,10 @@ class gui_class():
                 if serverid == "":
                     print("[-] ServerID is not set")
                     return
-            threading.Thread().start()
+                if joinchannelid == "":
+                    print("[-] JoinChannelID is not set")
+                    return
+            #threading.Thread(module_joiner.start, args=(tokens, serverid, invitelink, memberscreen, delay, update_module, answers, api, hcaptcha, joinmessage, joinchannelid)).start()
 
         if module == 2: #Leave
             print(tokens)
