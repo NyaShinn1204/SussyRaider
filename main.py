@@ -1,4 +1,5 @@
 import subprocess
+import json
 import tkinter as tk
 import customtkinter as ctk
 from tkinter import *
@@ -35,8 +36,30 @@ def get_hwid():
                 uuid = uuid[pos1:-15]
                 return uuid
     except:
-      return "failed get hwid"
-  
+        return "failed get hwid"
+
+def get_setting(path, default_setting):
+    # ファイルが存在するかどうかをチェック
+    if os.path.exists(path):
+        # ファイルが存在する場合、読み取る
+        with open(path, 'r', encoding='utf-8') as file:
+            setting = json.load(file)
+    else:
+        # ファイルが存在しない場合、デフォルト設定で作成
+        setting = default_setting
+        with open(path, 'w', encoding='utf-8') as file:
+            json.dump(setting, file, ensure_ascii=False, indent=4)
+    return setting
+
+def update_setting(file_path, key, value):
+    # 設定を読み取るか新規作成する
+    settings = get_setting(file_path, {})
+    # 設定を更新
+    settings[key] = value
+    # ファイルに保存
+    with open(file_path, 'w', encoding='utf-8') as file:
+        json.dump(settings, file, ensure_ascii=False, indent=4)
+
 class gui_class():
     def __init__(self, tk):
         global background_image
@@ -52,7 +75,13 @@ class gui_class():
         self.version = "3.0"
         self.status = "SUCCESS?"
         self.size = "1260x792"
+        self.path = os.path.join(os.getcwd(), "setting.json")
+        self.default_setting = {
+            "token_file": "",
+            "proxy_file": ""
+        }
         self.hwid = get_hwid()
+        self.setting = get_setting(self.path, self.default_setting)
         self.tk = tk
         self.tk.minsize(width=1260, height=792)
         self.tk.maxsize(width=1260, height=792)
@@ -489,6 +518,7 @@ class gui_class():
         self.usetoken = 0
         self.totalTokenLabel.set("Total: "+str(len(tokens)).zfill(3))
         mode = self.token_checkmode.get()
+        update_setting(self.path, "token_file", filepath)
         token_checker.check(self, mode, self.proxysetting.get(), self.proxies, self.proxytype, tokens)
 
     def update_token(self, status, token):
@@ -529,6 +559,7 @@ class gui_class():
         self.invaildproxies = 0
         self.useproxies = 0
         self.totalProxiesLabel.set("Total: "+str(len(proxies)).zfill(3))
+        update_setting(self.path, "proxy_file", filepath)
         proxy_checker.check(self, proxies, self.proxytype)
 
     def update_proxy(self, status, proxy):
